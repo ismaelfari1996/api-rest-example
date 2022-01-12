@@ -48,5 +48,22 @@ class DatabaseQuery{
        return $result->affected_rows;
     }
 
+    private function encrypt($string){
+        /*
+        ** This function will encrypt the string.
+        ** It will be used to encrypt the string.
+        */
+        
+        return md5($string);
+    }
+
+    public function getEncryptedData($string){
+        /*
+        ** This function will return the encrypted a string.
+        */
+
+        return self:: encrypt($string);
+    }
+
 }
 ?>

@@ -29,14 +29,14 @@ class ServerResponse{
         return $this->response;
     }
 
-    public function error_404(){
+    public function error_404($value="Not found"){
         /*
         ** This function will return an error 404.
         */
         $this->response["status"]="ERROR";
         $this->response["result"]=array(
             "code"=>"404",
-            "message"=>"Not found"
+            "message"=>$value
         );
         return $this->response;
     }
