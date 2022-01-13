@@ -19,7 +19,12 @@ class Auth{
             $data=self::getUserData($data['user']);
             if($data){
                if($data[0]['password']==$password){
-                   return "Access granted";
+                  // return "Access granted";
+                   if($data[0]['status']=="active"){
+                       return json_encode($this->response->success("Access granted"));
+                   }else{
+                       return json_encode($this->response->success("Your account is not active"));
+                   }
                }else{
                      return json_encode($this->response->error_404("Wrong password"));
                 }
