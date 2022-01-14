@@ -1,8 +1,8 @@
 {
     "connection":{
         "host":"localhost",
-        "user": "ismael",
-        "password":"Its17j1996",
+        "user": "root",
+        "password":"",
         "database":"api_rest",
         "port":"3306"
     }
