@@ -1,7 +1,7 @@
 <?php
 require_once "class/serverResponse.class.php";
 require_once "class/product.class.php";
-$reponse=new ServerResponse();
+$response=new ServerResponse();
 $product=new Product();
 if($_SERVER['REQUEST_METHOD']=="GET"){
     if(isset($_GET['page'])){
@@ -18,8 +18,20 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
     }
 
 }else if($_SERVER['REQUEST_METHOD']=="POST"){
- echo "POST";
+    $data=file_get_contents("php://input");
+    //echo $data;
+    if($product->post($data)){
+        header("Content-Type: application/json");
+        http_response_code(200);
+        echo json_encode($response->success("Product created"));
+    }else{
+        header("Content-Type: application/json");
+        http_response_code(500);
+        echo json_encode($response->error_500());   
+    }
+    
 }else if($_SERVER['REQUEST_METHOD']=="PUT"){
+
     echo "PUT";
 }else if($_SERVER['REQUEST_METHOD']=="DELETE"){
     echo "DELETE";
