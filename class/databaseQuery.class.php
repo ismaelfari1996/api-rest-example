@@ -45,7 +45,7 @@ class DatabaseQuery{
         ** It will be used to execute the query.
         */
        $result=$this->connection->query($query);
-       return $result->affected_rows;
+       return $this->connection->affected_rows;
     }
 
     private function encrypt($string){

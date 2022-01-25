@@ -34,5 +34,17 @@ class Product{
             return $this->response->error_404();
         }
     }
+
+    public function post($data){
+        $data=json_decode($data, true);
+        $sql="INSERT INTO ".$this->table." (cod,product,stock,price) VALUES ('".$data['cod']."','".$data['product']."',".$data['stock'].",".$data['price'].")";
+
+        if( $this->query->executeQuery($sql)>0){
+            return true;
+        }else{
+            return false;
+        }
+        
+    }
 }
 ?>
