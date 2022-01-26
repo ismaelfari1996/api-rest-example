@@ -91,9 +91,9 @@ class Product{
         /*
         ** Delete a product.
         */
+        $data=json_decode($json, true);
         if(isset($data["token"])){
             if(self::searchToken($data["token"])){
-                $data=json_decode($json, true);
                 $sql="DELETE FROM ".$this->table." WHERE cod='".$data["cod"]."'";
                 if( $this->query->executeQuery($sql)>0){
                     return true;
