@@ -31,10 +31,29 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
     }
     
 }else if($_SERVER['REQUEST_METHOD']=="PUT"){
-
-    echo "PUT";
+    $data=file_get_contents("php://input");
+    //echo $data;
+    if($product->put($data)){
+        header("Content-Type: application/json");
+        http_response_code(200);
+        echo json_encode($response->success("Product updated"));
+    }else{
+        header("Content-Type: application/json");
+        http_response_code(500);
+        echo json_encode($response->error_500());   
+    }
 }else if($_SERVER['REQUEST_METHOD']=="DELETE"){
-    echo "DELETE";
+    $data=file_get_contents("php://input");
+    //echo $data;
+    if($product->delete($data)){
+        header("Content-Type: application/json");
+        http_response_code(200);
+        echo json_encode($response->success("Product deleted"));
+    }else{
+        header("Content-Type: application/json");
+        http_response_code(500);
+        echo json_encode($response->error_500());   
+    }
 }else{
     $response=$response->error_405();
     header('Content-Type: application/json');

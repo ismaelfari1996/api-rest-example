@@ -79,7 +79,7 @@ class Auth{
         $date=date("Y-m-d H:i:s");  // Get the current date.
         $query="INSERT INTO api_rest.users_token (userid,token,status, date) VALUES ('$userId','".$token."','active','".$date."')";
         $insert=$this->db->executeQuery($query);
-        if($insert==""){
+        if($insert>0){
             return $token;
         }else{  
             return 0;
